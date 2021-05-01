@@ -1,11 +1,11 @@
 .transBtn {
-  background: rgba(226, 240, 255, 0.76);
+  background: rgba(255, 208, 0, 0.76);
   width: fit-content;
   padding: 1rem 2.25rem;
   font-size: 1.5rem;
   font-weight: 500;
   border-radius: 4px;
-  color: var(--light);
+  color: white;
   cursor: pointer;
   transition: 0.5s;
 }
