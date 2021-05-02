@@ -80,7 +80,13 @@ const Cities = () => {
             }.png`}
             alt="mumbai"
           />
-          <p className="city__name">{name}</p>
+          <p
+            className={`city__name  ${
+              name === selectedCity ? "city__name__active" : ""
+            }`}
+          >
+            {name}
+          </p>
         </div>
       ))}
     </div>

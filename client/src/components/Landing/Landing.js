@@ -15,9 +15,10 @@ import Modal from "../Modal/Modal";
 import Login from "./Login/Login";
 import Search from "../Search/Search";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Register from "./Register/Register";
 
 const Landing = () => {
-  const [isLoginModal, setIsLoginModal] = useState(false);
+  const [activeModal, setActiveModal] = useState("");
 
   return (
     <div className="landing">
@@ -29,16 +30,27 @@ const Landing = () => {
 
       <div className="landing__overlay">
         <Router>
-          <Header setIsLoginModal={setIsLoginModal} />
+          <Header setActiveModal={setActiveModal} />
           <Route exact path="/" component={Banner} />
           <Route path="/search" component={Search} />
         </Router>
         {/* <Banner /> */}
       </div>
 
-      {isLoginModal && (
-        <Modal isLoginModal={isLoginModal} setIsLoginModal={setIsLoginModal}>
+      {activeModal === "Login" && (
+        <Modal
+          isModal={activeModal === "Login"}
+          setIsModal={(bool) => setActiveModal(bool ? "Login" : "")}
+        >
           <Login />
+        </Modal>
+      )}
+      {activeModal === "Register" && (
+        <Modal
+          isModal={activeModal === "Register"}
+          setIsModal={(bool) => setActiveModal(bool ? "Register" : "")}
+        >
+          <Register />
         </Modal>
       )}
     </div>

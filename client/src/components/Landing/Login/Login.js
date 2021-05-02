@@ -16,7 +16,9 @@ const Login = () => {
 
   const [type, setType] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <form className="login" onSubmit={handleSubmit}>

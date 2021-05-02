@@ -9,7 +9,7 @@ import Logo from "../../../assets/logo.svg";
 //react router
 import { useHistory } from "react-router-dom";
 
-const Header = ({ setIsLoginModal }) => {
+const Header = ({ setActiveModal }) => {
   const [isHidden, setIsHidden] = useState(false);
 
   const history = useHistory();
@@ -29,10 +29,15 @@ const Header = ({ setIsLoginModal }) => {
         <div className="header__link" onClick={() => history.push("/search")}>
           Search
         </div>
-        <div className="header__link">Register</div>
+        <div
+          className="header__link"
+          onClick={() => setActiveModal("Register")}
+        >
+          Register
+        </div>
         <div
           className="header__link header__link__active"
-          onClick={() => setIsLoginModal(true)}
+          onClick={() => setActiveModal("Login")}
         >
           Login
         </div>
