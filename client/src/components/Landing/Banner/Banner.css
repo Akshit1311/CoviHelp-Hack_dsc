@@ -2,7 +2,7 @@
   padding: 0 var(--landing-padding);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  color: var(--dark);
+  color: var(--main-dark);
   height: 100%;
 }
 
@@ -20,7 +20,7 @@
 .banner__desc {
   margin: 3rem 0;
   line-height: 2.5rem;
-  color: var(--dark);
+  color: var(--main-dark);
   font-size: 1.25rem;
 }
 

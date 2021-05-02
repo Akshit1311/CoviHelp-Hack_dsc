@@ -6,8 +6,13 @@ import "./Header.css";
 //Assets
 import Logo from "../../../assets/logo.svg";
 
+//react router
+import { useHistory } from "react-router-dom";
+
 const Header = ({ setIsLoginModal }) => {
   const [isHidden, setIsHidden] = useState(false);
+
+  const history = useHistory();
 
   return (
     <div className="header">
@@ -21,7 +26,9 @@ const Header = ({ setIsLoginModal }) => {
 
       <div className={`header__links ${isHidden ? "header__hidden" : ""}`}>
         <i className="fas fa-times" onClick={() => setIsHidden(true)}></i>
-        <div className="header__link">Login</div>
+        <div className="header__link" onClick={() => history.push("/search")}>
+          Search
+        </div>
         <div className="header__link">Register</div>
         <div
           className="header__link header__link__active"

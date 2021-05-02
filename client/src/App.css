@@ -13,10 +13,19 @@ body {
 
 :root {
   --landing-padding: 7vw;
-  --dark: #263949;
+  --main-dark: #263949;
   --light: #444444;
+  --off-white: #f5f5f5;
+  /* color codes  */
   --primary: #007bff;
   --warning: #f3c23d;
+  --dark: #302f2f;
+  --success: #37db89;
+  /* Theme  */
+  /* --theme-bg: rgba(0, 0, 0, 0.723);
+  --theme-text: rgb(223, 223, 223); */
+  --theme-bg: rgba(255, 255, 255, 0.5);
+  --theme-text: rgb(32, 32, 32);
 }
 
 * {

@@ -7,7 +7,7 @@ import "./Login.css";
 import TextField from "@material-ui/core/TextField";
 
 //Assets
-import Covid from "../../assets//covid.png";
+import Covid from "../../../assets/covid.png";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 
 const Login = () => {
