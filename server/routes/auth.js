@@ -1,9 +1,15 @@
 import express from "express";
 import { check } from "express-validator";
 
-import { authUser } from "../controllers/authController.js";
+import auth from "../middleware/auth.js";
+import { getUser, authUser } from "../controllers/authController.js";
 
 const router = express.Router();
+
+// @route    GET api/auth
+// @desc     Get user
+// @access   Private
+router.get("/", auth, getUser);
 
 // @route    POST api/auth
 // @desc     Authenticate user
@@ -11,8 +17,8 @@ const router = express.Router();
 router.post(
   "/",
   [
-    check("email", "Please enter a valid email").not().isEmpty().isEmail(),
-    check("password", "Password is required").exists(),
+    check("email", "Please enter a valid email").isEmail(),
+    check("password", "Password is required").notEmpty(),
   ],
   authUser
 );

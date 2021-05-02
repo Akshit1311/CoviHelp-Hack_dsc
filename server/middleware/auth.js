@@ -7,9 +7,10 @@ const auth = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   //Check if no token
-  if (!token) {
-    return res.status(401).json({ msg: "No token, authorization denied" });
-  }
+  if (!token)
+    return res
+      .status(401)
+      .json({ errros: [{ msg: "No token, authorization denied" }] });
 
   //verify token
   try {
@@ -18,7 +19,9 @@ const auth = (req, res, next) => {
     req.user = decoded.user;
     next();
   } catch (err) {
-    res.status(401).json({ msg: "Token is not valid" });
+    res
+      .status(401)
+      .json({ errros: [{ msg: "No token, authorization denied" }] });
   }
 };
 

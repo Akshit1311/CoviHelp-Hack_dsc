@@ -4,6 +4,19 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/User.js";
 
+// @route    GET api/auth
+// @desc     Get user
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server error");
+  }
+};
+
 //@desc Get authenticated User
 const authUser = async (req, res) => {
   const errors = validationResult(req);
@@ -39,10 +52,10 @@ const authUser = async (req, res) => {
         res.json({ token });
       }
     );
-  } catch (err) {
-    console.log(err.message);
+  } catch (error) {
+    console.log(error);
     res.status(500).send("Server error");
   }
 };
 
-export { authUser };
+export { getUser, authUser };

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Notify } from "notiflix";
+
+import { loadUser, login, getHosps } from "../../api";
 
 // Styles
 import "./Landing.css";
@@ -19,6 +22,72 @@ import Register from "./Register/Register";
 
 const Landing = () => {
   const [activeModal, setActiveModal] = useState("");
+  const [user, setUser] = useState("");
+  const [hospitals, setHospitals] = useState([]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await loadUser();
+        setUser(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await getHosps();
+        setHospitals(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      Notify.Failure("Please enter both, email and password", {
+        fontFamily: "Roboto",
+        useGoogleFont: true,
+      });
+    } else {
+      const formData = { email, password };
+
+      try {
+        const { data } = await login(formData);
+
+        localStorage.setItem("token", data.token);
+
+        const res = await loadUser();
+        setUser(res.data);
+
+        console.log(user);
+
+        setActiveModal("");
+        setEmail("");
+        setPassword("");
+      } catch (err) {
+        console.log(err);
+        const errors = err.response?.data.errors;
+
+        if (errors) {
+          errors.forEach((error) => {
+            Notify.Failure(error.msg, {
+              fontFamily: "Roboto",
+              useGoogleFont: true,
+            });
+          });
+        }
+      }
+    }
+  };
 
   return (
     <div className="landing">
@@ -42,7 +111,13 @@ const Landing = () => {
           isModal={activeModal === "Login"}
           setIsModal={(bool) => setActiveModal(bool ? "Login" : "")}
         >
-          <Login />
+          <Login
+            email={email}
+            password={password}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            loginUser={loginUser}
+          />
         </Modal>
       )}
       {activeModal === "Register" && (

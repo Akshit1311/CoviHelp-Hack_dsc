@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Styles
 import "./Login.css";
@@ -8,20 +8,11 @@ import TextField from "@material-ui/core/TextField";
 
 //Assets
 import Covid from "../../../assets/covid.png";
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+// import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [type, setType] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
+const Login = ({ setEmail, setPassword, loginUser, email, password }) => {
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <form className="login" onSubmit={loginUser}>
       <h1>
         Login
         <img src={Covid} alt="covid" className="covid__icon" />
@@ -45,17 +36,11 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           style={{ width: "100%" }}
         />
-
-        <FormControl>
-          <InputLabel>Type</InputLabel>
-          <Select value={type} onChange={(e) => setType(e.target.value)}>
-            <MenuItem value={"Factory"}>Factory</MenuItem>
-            <MenuItem value={"Hospital"}>Hospital</MenuItem>
-          </Select>
-        </FormControl>
       </div>
 
-      <button className="btn btn-warning">Submit</button>
+      <button type="submit" className="btn btn-warning">
+        Submit
+      </button>
     </form>
   );
 };
