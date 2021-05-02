@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 import CreateEditHospital from "./CreateEditHospital/CreateEditHospital";
+
+import { getHospsUser } from "../../api";
 
 // Styles
 import "./Dashboard.css";
@@ -8,6 +10,18 @@ import HospitalCard from "./HospitalCard/HospitalCard";
 
 const Dashboard = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [hosps, setHosps] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await getHospsUser();
+        setHosps(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   return (
     <div className="dashboard">

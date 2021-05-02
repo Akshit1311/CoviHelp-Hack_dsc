@@ -95,7 +95,7 @@ const CreateEditHospital = ({ isCreate }) => {
       </div>
 
       <br />
-      <h3>Without Oxygen</h3>
+      <h3>Beds Without Oxygen</h3>
       <div className="createEditHospital__fields">
         <TextField
           id="withoutOxRem"
@@ -125,7 +125,7 @@ const CreateEditHospital = ({ isCreate }) => {
         />
       </div>
       <br />
-      <h3>With Oxygen</h3>
+      <h3>Beds With Oxygen</h3>
       <div className="createEditHospital__fields">
         <TextField
           id="withoutOxRem"

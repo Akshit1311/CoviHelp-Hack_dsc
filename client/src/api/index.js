@@ -13,6 +13,7 @@ const loadUser = () => API.get("/api/auth");
 const login = (formData) => API.post("/api/auth", formData);
 const reg = (formData) => API.post("/api/user", formData);
 const getHosps = () => API.get("/api/hospitals");
+const getHospsUser = () => API.get("/api/hospitals/user");
 const addHosp = (formData) => API.post("/api/hospitals", formData);
 
-export { loadUser, login, reg, getHosps, addHosp };
+export { loadUser, login, reg, getHosps, getHospsUser, addHosp };

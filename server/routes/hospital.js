@@ -4,7 +4,11 @@ import { check } from "express-validator";
 const router = express.Router();
 
 import auth from "../middleware/auth.js";
-import { getHosps, addHosp } from "../controllers/hospitalController.js";
+import {
+  getHosps,
+  addHosp,
+  getUserHosps,
+} from "../controllers/hospitalController.js";
 
 // @route    GET api/hospital
 // @desc     Add hospital for user
@@ -15,5 +19,10 @@ router.get("/", getHosps);
 // @desc     Add hospital for user
 // @access   Private
 router.post("/", auth, addHosp);
+
+// @route    POST api/hospital
+// @desc     Add hospital for user
+// @access   Private
+router.get("/user", auth, getUserHosps);
 
 export default router;

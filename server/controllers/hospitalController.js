@@ -56,4 +56,14 @@ const addHosp = async (req, res) => {
   }
 };
 
-export { getHosps, addHosp };
+const getUserHosps = async (req, res) => {
+  try {
+    const hosps = await Hospital.find({ user: req.user.id });
+    res.json(hosps);
+  } catch (error) {
+    console.log(error);
+    res.send("Server Error");
+  }
+};
+
+export { getHosps, addHosp, getUserHosps };
