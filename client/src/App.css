@@ -18,6 +18,7 @@ body {
   --off-white: #f5f5f5;
   /* color codes  */
   --primary: #007bff;
+  --danger: rgb(199, 49, 49);
   --warning: #f3c23d;
   --dark: #302f2f;
   --success: #37db89;
