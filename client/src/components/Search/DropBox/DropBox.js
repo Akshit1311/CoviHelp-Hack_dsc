@@ -12,24 +12,25 @@ const DropBox = ({ title }) => {
     {
       id: 0,
       value: "Few Left",
-      color: "warning",
     },
     {
       id: 1,
       value: "Available",
-      color: "success",
     },
     {
       id: 2,
       value: "Private",
-      color: "primary",
     },
     {
       id: 3,
       value: "Government",
-      color: "primary",
     },
   ];
+
+  const handleLabelChange = (label) => {
+    if (!labels.includes(label)) setLabels((prev) => [...prev, label]);
+    else setLabels((prev) => prev.filter((val) => val !== label));
+  };
 
   return (
     <div className="dropBox">
@@ -43,10 +44,13 @@ const DropBox = ({ title }) => {
 
       {isOpen && (
         <div className="dropBox__content">
-          {labelsData.map(({ id, value, color }) => (
+          {labelsData.map(({ id, value }) => (
             <span
               key={id}
-              className={`dropBox__label dropBox__label__${color}`}
+              className={`dropBox__label dropBox__label__${
+                labels.includes(value) ? "active" : "outlined"
+              }`}
+              onClick={() => handleLabelChange(value)}
             >
               {value}
             </span>

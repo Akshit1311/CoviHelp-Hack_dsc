@@ -31,6 +31,16 @@
   margin: 0.25rem;
 }
 
+.dropBox__label__outlined {
+  border: 1px solid var(--dark);
+  color: var(--dark);
+}
+.dropBox__label__active {
+  border: 1px solid var(--dark);
+  background: var(--dark);
+  color: white;
+}
+
 .dropBox__label__primary {
   background: var(--primary);
 }
