@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { email, name, password } = req.body;
+  const { govId, email, name, type, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -20,8 +20,10 @@ const createUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
+      govId,
       email,
       name,
+      type,
       password: hashedPassword,
     });
 
