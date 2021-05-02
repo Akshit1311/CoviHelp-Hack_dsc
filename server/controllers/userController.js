@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { email, name, password } = req.body;
+  const { email, name, type, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -22,6 +22,7 @@ const createUser = async (req, res) => {
     const newUser = new User({
       email,
       name,
+      type,
       password: hashedPassword,
     });
 
