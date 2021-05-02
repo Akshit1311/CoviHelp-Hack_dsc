@@ -8,15 +8,18 @@ import Logo from "../../../assets/logo.svg";
 
 //react router
 import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Header = ({ setActiveModal }) => {
   const [isHidden, setIsHidden] = useState(false);
 
   const history = useHistory();
+  const location = useLocation();
 
+  console.log({ path: location.pathname });
   return (
     <div className="header">
-      <div className="header__logo">
+      <div className="header__logo" onClick={() => history.push("/")}>
         <img src={Logo} alt="logo" />
       </div>
 
@@ -26,19 +29,21 @@ const Header = ({ setActiveModal }) => {
 
       <div className={`header__links ${isHidden ? "header__hidden" : ""}`}>
         <i className="fas fa-times" onClick={() => setIsHidden(true)}></i>
-        <div className="header__link" onClick={() => history.push("/search")}>
+        <div
+          className={`header__link  ${
+            location.pathname.includes("search") ? "header__link__active" : ""
+          }`}
+          onClick={() => history.push("/search")}
+        >
           Search
         </div>
         <div
-          className="header__link"
+          className={`header__link`}
           onClick={() => setActiveModal("Register")}
         >
           Register
         </div>
-        <div
-          className="header__link header__link__active"
-          onClick={() => setActiveModal("Login")}
-        >
+        <div className={`header__link`} onClick={() => setActiveModal("Login")}>
           Login
         </div>
       </div>

@@ -16,6 +16,7 @@ import Login from "./Login/Login";
 import Search from "../Search/Search";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Register from "./Register/Register";
+import Dashboard from "../Dashboard/Dashboard";
 
 const Landing = () => {
   const [activeModal, setActiveModal] = useState("");
@@ -33,6 +34,7 @@ const Landing = () => {
           <Header setActiveModal={setActiveModal} />
           <Route exact path="/" component={Banner} />
           <Route path="/search" component={Search} />
+          <Route path="/dashboard" component={Dashboard} />
         </Router>
         {/* <Banner /> */}
       </div>
