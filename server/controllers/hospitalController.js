@@ -32,10 +32,9 @@ const addHosp = async (req, res) => {
     icuWithVents,
   } = req.body;
 
-  console.log(req.body);
-
   try {
     const newHosp = new Hospital({
+      user: req.user.id,
       name,
       city,
       state,
