@@ -42,17 +42,24 @@ const DropBox = ({ title, tags, setTags }) => {
 
       {isOpen && (
         <div className="dropBox__content">
-          {labelsData.map(({ id, value }) => (
-            <span
-              key={id}
-              className={`dropBox__label dropBox__label__${
-                tags.includes(value) ? "active" : "outlined"
-              }`}
-              onClick={() => handleLabelChange(value)}
-            >
-              {value}
+          {tags.map((tag) => (
+            <span key={tag} className={`dropBox__label dropBox__label__dark`}>
+              {tag}
             </span>
           ))}
+          {labelsData
+            .filter((label) => !tags.includes(label.value))
+            .map(({ id, value }) => (
+              <span
+                key={id}
+                className={`dropBox__label dropBox__label__${
+                  tags.includes(value) ? "active" : "outlined"
+                }`}
+                onClick={() => handleLabelChange(value)}
+              >
+                {value}
+              </span>
+            ))}
         </div>
       )}
     </div>

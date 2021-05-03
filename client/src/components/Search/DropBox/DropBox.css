@@ -29,6 +29,7 @@
   cursor: pointer;
   color: white;
   margin: 0.25rem;
+  height: fit-content;
 }
 
 .dropBox__label__outlined {
@@ -43,6 +44,10 @@
 
 .dropBox__label__primary {
   background: var(--primary);
+}
+.dropBox__label__danger {
+  background: var(--danger);
+  margin-left: 1rem;
 }
 .dropBox__label__warning {
   background: var(--warning);

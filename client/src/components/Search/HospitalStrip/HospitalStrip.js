@@ -92,11 +92,11 @@ const HospitalStrip = ({ name, hospital }) => {
           </p>
           <p>
             <i className="fas fa-phone"></i>
-            {Math.floor(Math.random() * 9000000000) + 1000000000}
+            {9923598765}
           </p>
           <p>
             <i className="fas fa-address-book"></i>
-            {b.diff(moment(hospital.updatedAt), "minutes")}
+            {hospital.city}
           </p>
           <p>
             <i className="fas fa-envelope"></i>
