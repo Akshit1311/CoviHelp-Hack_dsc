@@ -3,10 +3,8 @@ import React, { useState } from "react";
 //Styles
 import "./DropBox.css";
 
-const DropBox = ({ title }) => {
+const DropBox = ({ title, tags, setTags }) => {
   const [isOpen, setIsOpen] = useState(true);
-
-  const [labels, setLabels] = useState([]);
 
   const labelsData = [
     {
@@ -28,8 +26,8 @@ const DropBox = ({ title }) => {
   ];
 
   const handleLabelChange = (label) => {
-    if (!labels.includes(label)) setLabels((prev) => [...prev, label]);
-    else setLabels((prev) => prev.filter((val) => val !== label));
+    if (!tags.includes(label)) setTags((prev) => [...prev, label]);
+    else setTags((prev) => prev.filter((val) => val !== label));
   };
 
   return (
@@ -48,7 +46,7 @@ const DropBox = ({ title }) => {
             <span
               key={id}
               className={`dropBox__label dropBox__label__${
-                labels.includes(value) ? "active" : "outlined"
+                tags.includes(value) ? "active" : "outlined"
               }`}
               onClick={() => handleLabelChange(value)}
             >

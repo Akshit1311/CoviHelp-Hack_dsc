@@ -27,7 +27,7 @@ const Cities = () => {
     },
 
     {
-      id: 2,
+      id: 3,
       name: "Hyderabad",
       src: "hyd",
       alt: "hyderabad",
@@ -72,8 +72,8 @@ const Cities = () => {
 
   return (
     <div className="cities">
-      {citiesData.map(({ src, alt, name }) => (
-        <div className="city" onClick={() => setSelectedCity(name)}>
+      {citiesData.map(({ id, src, alt, name }) => (
+        <div className="city" onClick={() => setSelectedCity(name)} key={id}>
           <img
             src={`https://in.bmscdn.com/m6/images/common-modules/regions/${src}${
               name === selectedCity ? "-selected" : ""

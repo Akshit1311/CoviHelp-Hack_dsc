@@ -8,6 +8,10 @@
   color: var(--main-dark);
 }
 
+.header__logo {
+  cursor: pointer;
+}
+
 .header__logo img {
   height: 11vh;
 }
