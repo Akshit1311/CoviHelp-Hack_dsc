@@ -1,10 +1,13 @@
 import React from "react";
+import moment from "moment";
 
 // Styles
 import "./HospitalStrip.css";
 
 const HospitalStrip = ({ name, hospital }) => {
   const { icuWithVents, icuWithoutVents, withOx, withoutOx } = hospital.beds;
+
+  let b = moment();
 
   const tags = [
     {
@@ -84,15 +87,16 @@ const HospitalStrip = ({ name, hospital }) => {
       <div className="hospitalStrip__row">
         <div className="hospitalStrip__info">
           <p>
-            <i className="fas fa-clock"></i>
-            {hospital.updatedAt}
+            <i className="fas fa-clock"></i>Updated at&nbsp;
+            {moment(hospital.updatedAt).format("MMMM Do YYYY, h:mm a")}
           </p>
           <p>
             <i className="fas fa-phone"></i>
-            {hospital.updatedAt}
+            {Math.floor(Math.random() * 9000000000) + 1000000000}
           </p>
           <p>
-            <i className="fas fa-address-book"></i>Last updated 26 minutes ago
+            <i className="fas fa-address-book"></i>
+            {b.diff(moment(hospital.updatedAt), "minutes")}
           </p>
           <p>
             <i className="fas fa-envelope"></i>
