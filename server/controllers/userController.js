@@ -9,19 +9,19 @@ const createUser = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { govId, email, name, type, password } = req.body;
+  const { govId, regEmail, name, type, regPassword } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: regEmail });
     if (user)
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
 
     const salt = await bcrypt.genSalt(12);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(regPassword, salt);
 
     const newUser = new User({
       govId,
-      email,
+      email: regEmail,
       name,
       type,
       password: hashedPassword,

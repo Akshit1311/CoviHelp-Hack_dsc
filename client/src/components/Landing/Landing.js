@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Notify } from "notiflix";
 
-import { loadUser, login, getHosps } from "../../api";
+import { loadUser, login, getHosps, reg } from "../../api";
 
 // Styles
 import "./Landing.css";
@@ -27,6 +27,15 @@ const Landing = () => {
   const [hospitals, setHospitals] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    type: "",
+    regEmail: "",
+    govId: "",
+    regPassword: "",
+    confirmPass: "",
+  });
+  const { name, type, regEmail, govId, regPassword, confirmPass } = form;
 
   useEffect(() => {
     (async () => {
@@ -49,6 +58,42 @@ const Landing = () => {
       }
     })();
   }, []);
+
+  const register = async (e) => {
+    e.preventDefault();
+
+    console.log(form);
+
+    if (regPassword !== confirmPass)
+      Notify.Failure("Password and confirm password do not match!", {
+        fontFamily: "Roboto",
+        useGoogleFont: true,
+      });
+    else {
+      try {
+        const { data } = await reg(form);
+
+        console.log(data);
+
+        setActiveModal("");
+        setEmail(regEmail);
+        setPassword(regPassword);
+        await loginUser();
+      } catch (err) {
+        console.log(err);
+        const errors = err.response?.data.errors;
+
+        if (errors) {
+          errors.forEach((error) => {
+            Notify.Failure(error.msg, {
+              fontFamily: "Roboto",
+              useGoogleFont: true,
+            });
+          });
+        }
+      }
+    }
+  };
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -100,7 +145,11 @@ const Landing = () => {
 
       <div className="landing__overlay">
         <Router>
-          <Header setActiveModal={setActiveModal} />
+          <Header
+            setActiveModal={setActiveModal}
+            user={user}
+            setUser={setUser}
+          />
           <Route exact path="/" component={Banner} />
           <Route path="/search" component={Search} />
           <Route path="/dashboard" component={Dashboard} />
@@ -127,7 +176,7 @@ const Landing = () => {
           isModal={activeModal === "Register"}
           setIsModal={(bool) => setActiveModal(bool ? "Register" : "")}
         >
-          <Register />
+          <Register register={register} form={form} setForm={setForm} />
         </Modal>
       )}
     </div>

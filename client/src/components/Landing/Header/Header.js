@@ -10,11 +10,16 @@ import Logo from "../../../assets/logo.svg";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const Header = ({ setActiveModal }) => {
+const Header = ({ setActiveModal, user, setUser }) => {
   const [isHidden, setIsHidden] = useState(false);
 
   const history = useHistory();
   const location = useLocation();
+
+  const logout = () => {
+    setUser("");
+    localStorage.removeItem("token");
+  };
 
   console.log({ path: location.pathname });
   return (
@@ -37,15 +42,26 @@ const Header = ({ setActiveModal }) => {
         >
           Search
         </div>
-        <div
-          className={`header__link`}
-          onClick={() => setActiveModal("Register")}
-        >
-          Register
-        </div>
-        <div className={`header__link`} onClick={() => setActiveModal("Login")}>
-          Login
-        </div>
+        {user ? (
+          <div className={`header__link`} onClick={logout}>
+            Logout
+          </div>
+        ) : (
+          <>
+            <div
+              className={`header__link`}
+              onClick={() => setActiveModal("Register")}
+            >
+              Register
+            </div>
+            <div
+              className={`header__link`}
+              onClick={() => setActiveModal("Login")}
+            >
+              Login
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
