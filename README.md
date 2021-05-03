@@ -1,22 +1,23 @@
 # CoviHelp App (HACK DSC)
 
-## Team Members
+## Team Members (team - fourTwo)
 
 <ul>
-<li>Akshit Gupta <a href="https://github.com/Akshit1311">@Akshit1311</a></li>
-<li>Deepanshu Singh  <a href="https://github.com/deepso7">@deepso7</a> </li>
-<li>Sidhya Virya Singh <a href="https://github.com/GuavaGuy2693">@GuavaGuy2693</a></li>
-<li>Akshat Verma <a href="https://github.com/averma005">@averma005</a> </li>
+<li>Akshit Gupta <a target="_blank" href="https://github.com/Akshit1311">@Akshit1311</a></li>
+<li>Deepanshu Singh  <a target="_blank" href="https://github.com/deepso7">@deepso7</a> </li>
+<li>Sidhya Virya Singh <a target="_blank" href="https://github.com/GuavaGuy2693">@GuavaGuy2693</a></li>
+<li>Akshat Verma <a target="_blank" href="https://github.com/averma005">@averma005</a> </li>
 </ul>
 
 <br />
 
 ## Live Site
 
-<a href="https://covihelp-hackdsc.netlify.app/">
+<a target="_blank" href="https://covihelp-hackdsc.netlify.app/">
 Live Site - https://covihelp-hackdsc.netlify.app/
 </a>
 
+<br />
 <br />
 
 ### Installation
