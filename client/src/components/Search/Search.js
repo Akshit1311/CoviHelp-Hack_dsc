@@ -15,6 +15,7 @@ const Search = () => {
   const [hospitals, setHospitals] = useState([]);
   const [tags, setTags] = useState(["Private"]);
   const [filteredHospitals, setFilteredHospitals] = useState(hospitals);
+  const [selectedCity, setSelectedCity] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -33,10 +34,26 @@ const Search = () => {
 
   return (
     <div className="search">
-      <Cities />
+      <Cities
+        selectedCity={selectedCity}
+        setSelectedCity={setSelectedCity}
+        tags={tags}
+        setTags={setTags}
+      />
       <div className="search__content">
         <div className="search__content__left">
-          <h3>Filters</h3>
+          <div className="d-flex">
+            <h3>Filters</h3>
+            <span
+              className="dropBox__label dropBox__label__danger"
+              onClick={() => {
+                setTags([]);
+                setSelectedCity([]);
+              }}
+            >
+              Clear
+            </span>
+          </div>
           <DropBox title="Tags" tags={tags} setTags={setTags} />
           <DropBox title="Tags" tags={tags} setTags={setTags} />
         </div>
@@ -59,9 +76,10 @@ const Search = () => {
             ? hospitals
                 .filter(
                   ({ city, name, state }) =>
-                    city.includes(searchKey) ||
-                    name.includes(searchKey) ||
-                    state.includes(searchKey)
+                    (city.includes(searchKey) ||
+                      name.includes(searchKey) ||
+                      state.includes(searchKey)) &&
+                    city.includes(selectedCity)
                 )
                 .map((hos) => (
                   <HospitalStrip
@@ -73,9 +91,10 @@ const Search = () => {
             : hospitals
                 .filter(
                   ({ city, name, state }) =>
-                    city.includes(searchKey) ||
-                    name.includes(searchKey) ||
-                    state.includes(searchKey)
+                    (city.includes(searchKey) ||
+                      name.includes(searchKey) ||
+                      state.includes(searchKey)) &&
+                    city.includes(selectedCity)
                 )
                 .map((hos) => (
                   <HospitalStrip

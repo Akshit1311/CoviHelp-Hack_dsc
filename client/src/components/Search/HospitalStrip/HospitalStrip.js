@@ -92,7 +92,8 @@ const HospitalStrip = ({ name, hospital }) => {
             {hospital.updatedAt}
           </p>
           <p>
-            <i className="fas fa-address-book"></i>Last updated 26 minutes ago
+            <i className="fas fa-address-book"></i>
+            {hospital.city}
           </p>
           <p>
             <i className="fas fa-envelope"></i>

@@ -3,9 +3,7 @@ import React, { useState } from "react";
 //Styles
 import "./Cities.css";
 
-const Cities = () => {
-  const [selectedCity, setSelectedCity] = useState("");
-
+const Cities = ({ selectedCity, setSelectedCity, tags, setTags }) => {
   const citiesData = [
     {
       id: 0,
@@ -70,10 +68,20 @@ const Cities = () => {
     },
   ];
 
+  const handleCityChange = (name) => {
+    if (selectedCity === name) {
+      setSelectedCity("");
+      setTags([...tags.filter((t) => t !== name)]);
+    } else {
+      setTags([...tags.filter((tag) => tag !== selectedCity), name]);
+      setSelectedCity(name);
+    }
+  };
+
   return (
     <div className="cities">
       {citiesData.map(({ id, src, alt, name }) => (
-        <div className="city" onClick={() => setSelectedCity(name)} key={id}>
+        <div className="city" onClick={() => handleCityChange(name)} key={id}>
           <img
             src={`https://in.bmscdn.com/m6/images/common-modules/regions/${src}${
               name === selectedCity ? "-selected" : ""
