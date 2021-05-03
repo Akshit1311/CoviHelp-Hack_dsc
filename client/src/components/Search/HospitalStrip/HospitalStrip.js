@@ -3,7 +3,9 @@ import React from "react";
 // Styles
 import "./HospitalStrip.css";
 
-const HospitalStrip = ({ name }) => {
+const HospitalStrip = ({ name, hospital }) => {
+  const { icuWithVents, icuWithoutVents, withOx, withoutOx } = hospital.beds;
+
   const tags = [
     {
       id: 0,
@@ -27,16 +29,20 @@ const HospitalStrip = ({ name }) => {
     },
   ];
 
+  const calcColor = (val) => {
+    return tags.find((tag) => tag.value === val)?.color;
+  };
+
   return (
     <div className="hospitalStrip">
       <div className="hospitalStrip__row">
         <div className="hospitalStrip__left">
-          <h3>{name}</h3>
+          <h3>{hospital.name}</h3>
           <div className="hospitalStrip__tags">
-            {tags.map(({ id, color, value }) => (
+            {hospital.tags.map((value, i) => (
               <span
-                key={id}
-                className={`dropBox__label dropBox__label__${color}`}
+                key={i}
+                className={`dropBox__label dropBox__label__${calcColor(value)}`}
               >
                 {value}
               </span>
@@ -50,32 +56,47 @@ const HospitalStrip = ({ name }) => {
           <div className="hospitalStrip__stat">ICU Without Ventilator</div>
           <div className="hospitalStrip__stat">ICU With Ventilator</div>
           <div className="hospitalStrip__stat">
-            <span className="dropBox__label dropBox__label__dark">7</span>/10
+            <span className="dropBox__label dropBox__label__dark">
+              {icuWithVents?.remaining}
+            </span>
+            /{icuWithVents?.max}
           </div>
           <div className="hospitalStrip__stat">
-            <span className="dropBox__label dropBox__label__dark">7</span>/10
+            <span className="dropBox__label dropBox__label__dark">
+              {icuWithoutVents?.remaining}
+            </span>
+            /{icuWithoutVents?.max}
           </div>
           <div className="hospitalStrip__stat">
-            <span className="dropBox__label dropBox__label__dark">7</span>/10
+            <span className="dropBox__label dropBox__label__dark">
+              {withOx?.remaining}
+            </span>
+            /{withOx?.max}
           </div>
           <div className="hospitalStrip__stat">
-            <span className="dropBox__label dropBox__label__dark">7</span>/10
+            <span className="dropBox__label dropBox__label__dark">
+              {withoutOx?.remaining}
+            </span>
+            /{withoutOx?.max}
           </div>
         </div>
       </div>
       <div className="hospitalStrip__row">
         <div className="hospitalStrip__info">
           <p>
-            <i className="fas fa-clock"></i>Last updated 26 minutes ago
+            <i className="fas fa-clock"></i>
+            {hospital.updatedAt}
           </p>
           <p>
-            <i className="fas fa-phone"></i>Last updated 26 minutes ago
+            <i className="fas fa-phone"></i>
+            {hospital.updatedAt}
           </p>
           <p>
             <i className="fas fa-address-book"></i>Last updated 26 minutes ago
           </p>
           <p>
-            <i className="fas fa-clock"></i>Last updated 26 minutes ago
+            <i className="fas fa-envelope"></i>
+            {hospital.user.email}
           </p>
         </div>
       </div>

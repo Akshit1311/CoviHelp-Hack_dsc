@@ -16,10 +16,14 @@ const Banner = () => {
   return (
     <div className="banner">
       <div className="banner__left">
-        <h1>Heading 1</h1>
+        <h1>CoviHelp</h1>
         <p className="banner__desc">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
-          architecto pariatur obcaecati quod est ipsum quasi eum error maiores
+          Quickly find nearby beds with Oxygen tanks with the help of CoviHelp
+          <ul>
+            <li>find beds with ease by keywords</li>
+            <li>register as a hospital to provide help</li>
+            <li>get instant access to contact info of hospitals</li>
+          </ul>
         </p>
         <TransBtn text="Get Started" onClick={() => history.push("/search")} />
       </div>

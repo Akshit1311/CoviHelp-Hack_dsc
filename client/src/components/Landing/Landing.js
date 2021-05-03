@@ -90,6 +90,10 @@ const Landing = () => {
     }
   };
 
+  useEffect(() => {
+    console.log({ hospitals });
+  }, [hospitals]);
+
   return (
     <div className="landing">
       <img src={Triangle} alt="triangle" className="triangle" />
